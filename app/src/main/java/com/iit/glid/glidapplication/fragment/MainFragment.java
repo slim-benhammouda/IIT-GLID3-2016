@@ -12,7 +12,9 @@ import com.iit.glid.glidapplication.views.CustomView;
 
 public class MainFragment extends Fragment {
 
-    private CustomView mCustomView;
+    private CustomView mCustomView1;
+    private CustomView mCustomView2;
+    private CustomView mCustomView3;
 
     public MainFragment() {
     }
@@ -33,10 +35,17 @@ public class MainFragment extends Fragment {
 
 
     private void initViews(View rootView) {
-        mCustomView = (CustomView) rootView.findViewById(R.id.custom_item);
-        mCustomView.setTitleText("this is a title");
-        mCustomView.setDescriptionText("this is a description");
-        mCustomView.setImageRes(android.R.drawable.ic_delete);
+        mCustomView1 = (CustomView) rootView.findViewById(R.id.custom_item_1);
+
+        mCustomView2 = (CustomView) rootView.findViewById(R.id.custom_item_2);
+        mCustomView2.setTitleText("this is a title");
+        mCustomView2.setDescriptionText("this is a description");
+        mCustomView2.setImageRes(android.R.drawable.ic_btn_speak_now);
+
+        mCustomView3 = (CustomView) rootView.findViewById(R.id.custom_item_3);
+        mCustomView3.setTitleText("this is a title");
+        mCustomView3.setDescriptionText("this is a description");
+        mCustomView3.setImageRes(android.R.drawable.ic_media_next);
 
     }
 }

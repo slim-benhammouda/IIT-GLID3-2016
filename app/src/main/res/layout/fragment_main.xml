@@ -1,13 +1,29 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <com.iit.glid.glidapplication.views.CustomView
-        android:id="@+id/custom_item"
+        android:id="@+id/custom_item_1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:descriptionText="@string/app_name"
+        app:image="@android:drawable/ic_delete"
+        app:titleText="salut" />
 
+
+    <com.iit.glid.glidapplication.views.CustomView
+        android:id="@+id/custom_item_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/custom_item_1" />
+
+    <com.iit.glid.glidapplication.views.CustomView
+        android:id="@+id/custom_item_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/custom_item_2" />
 
 
 </RelativeLayout>

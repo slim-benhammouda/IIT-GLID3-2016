@@ -1,6 +1,7 @@
 package com.iit.glid.glidapplication.views;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -27,6 +28,21 @@ public class CustomView extends RelativeLayout {
     public CustomView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         initViews(context);
+
+        if (attributeSet != null) {
+            TypedArray a = context.getTheme().obtainStyledAttributes(
+                    attributeSet,
+                    R.styleable.CustomView,
+                    0, 0);
+
+            try {
+                mTitle.setText(a.getString(R.styleable.CustomView_titleText));
+                mDescription.setText(a.getString(R.styleable.CustomView_descriptionText));
+                mImage.setImageResource(a.getResourceId(R.styleable.CustomView_image, -1));
+            } finally {
+                a.recycle();
+            }
+        }
     }
 
     private void initViews(Context context) {
@@ -36,7 +52,7 @@ public class CustomView extends RelativeLayout {
 
         mTitle = (TextView) view.findViewById(R.id.item_title);
         mDescription = (TextView) view.findViewById(R.id.item_description);
-        mImage= (ImageView)view.findViewById(R.id.item_image);
+        mImage = (ImageView) view.findViewById(R.id.item_image);
     }
 
     public void setTitleText(String text) {
