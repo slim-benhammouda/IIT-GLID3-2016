@@ -53,36 +53,38 @@ public class CustomListAdapter extends BaseAdapter {
         Log.v("slim", "position to update = " + position);
 
         long startTime = Calendar.getInstance().getTimeInMillis();
+
+        // best practice
         ViewHolder viewHolder;
 
-//        if (convertView == null) {
-//            Log.v("slim", "convertView==null");
-//            convertView = mLayoutInflater.inflate(R.layout.custom_view_layout, parent, false);
+        if (convertView == null) {
+            Log.v("slim", "convertView==null");
+            convertView = mLayoutInflater.inflate(R.layout.custom_view_layout, parent, false);
+
+            viewHolder = new ViewHolder();
+            viewHolder.mImageView = (ImageView) convertView.findViewById(R.id.item_image);
+            viewHolder.mTitleTextView = (TextView) convertView.findViewById(R.id.item_title);
+            viewHolder.mDescriptionTextView = (TextView) convertView.findViewById(R.id.item_description);
+            convertView.setTag(viewHolder);
+
+        } else {
+            Log.v("slim", "convertView!=null");
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+        viewHolder.mImageView.setImageResource(mListContent.get(position).getImageRes());
+        viewHolder.mTitleTextView.setText(mListContent.get(position).getTitle());
+        viewHolder.mDescriptionTextView.setText(mListContent.get(position).getDescription());
+
+        //Bad version
+//        convertView = mLayoutInflater.inflate(R.layout.custom_view_layout, parent, false);
 //
-//            viewHolder = new ViewHolder();
-//            viewHolder.mImageView = (ImageView) convertView.findViewById(R.id.item_image);
-//            viewHolder.mTitleTextView = (TextView) convertView.findViewById(R.id.item_title);
-//            viewHolder.mDescriptionTextView = (TextView) convertView.findViewById(R.id.item_description);
-//            convertView.setTag(viewHolder);
+//        ImageView mImageView = (ImageView) convertView.findViewById(R.id.item_image);
+//        TextView mTitleTextView = (TextView) convertView.findViewById(R.id.item_title);
+//        TextView mDescriptionTextView = (TextView) convertView.findViewById(R.id.item_description);
 //
-//        } else {
-//            Log.v("slim", "convertView!=null");
-//            viewHolder = (ViewHolder) convertView.getTag();
-//        }
-//        viewHolder.mImageView.setImageResource(mListContent.get(position).getImageRes());
-//        viewHolder.mTitleTextView.setText(mListContent.get(position).getTitle());
-//        viewHolder.mDescriptionTextView.setText(mListContent.get(position).getDescription());
-
-        //TODO to remove
-        convertView = mLayoutInflater.inflate(R.layout.custom_view_layout, parent, false);
-
-        ImageView mImageView = (ImageView) convertView.findViewById(R.id.item_image);
-        TextView mTitleTextView = (TextView) convertView.findViewById(R.id.item_title);
-        TextView mDescriptionTextView = (TextView) convertView.findViewById(R.id.item_description);
-
-        mImageView.setImageResource(mListContent.get(position).getImageRes());
-        mTitleTextView.setText(mListContent.get(position).getTitle());
-        mDescriptionTextView.setText(mListContent.get(position).getDescription());
+//        mImageView.setImageResource(mListContent.get(position).getImageRes());
+//        mTitleTextView.setText(mListContent.get(position).getTitle());
+//        mDescriptionTextView.setText(mListContent.get(position).getDescription());
 
         //
 

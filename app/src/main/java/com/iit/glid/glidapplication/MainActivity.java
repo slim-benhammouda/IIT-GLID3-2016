@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.iit.glid.glidapplication.fragment.FragmentWithList;
+import com.iit.glid.glidapplication.fragment.FragmentWithRecycler;
 import com.iit.glid.glidapplication.fragment.MainFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,6 +39,12 @@ public class MainActivity extends AppCompatActivity {
                         .replace(R.id.main_layout, FragmentWithList.newInstance())
                         .commit();
                 break;
+            case R.id.action_recycler:
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.main_layout, FragmentWithRecycler.newInstance())
+                        .commit();
+                break;
+
 
         }
 

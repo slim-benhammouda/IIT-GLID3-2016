@@ -8,4 +8,10 @@
         android:title="to list"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/action_recycler"
+        android:orderInCategory="100"
+        android:title="to recycler"
+        app:showAsAction="always" />
+
 </menu>
