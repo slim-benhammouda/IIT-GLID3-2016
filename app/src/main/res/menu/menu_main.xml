@@ -14,4 +14,11 @@
         android:title="to recycler"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/action_add"
+        android:orderInCategory="100"
+        android:title="add"
+        app:showAsAction="always" />
+
+
 </menu>

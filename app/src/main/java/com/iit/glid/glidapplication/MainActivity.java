@@ -2,6 +2,7 @@ package com.iit.glid.glidapplication;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -17,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.main_layout, MainFragment.newInstance())
+                .add(R.id.main_layout, FragmentWithRecycler.newInstance())
                 .commit();
 
 
@@ -32,23 +33,29 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        boolean result = true;
 
         switch (item.getItemId()) {
             case R.id.action_list:
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.main_layout, FragmentWithList.newInstance())
                         .commit();
+                Log.v("IIT", "action_list clicked in activity");
+                result = true;
                 break;
             case R.id.action_recycler:
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.main_layout, FragmentWithRecycler.newInstance())
                         .commit();
                 break;
+            case R.id.action_add:
+                result = false;
+                break;
 
 
         }
 
 
-        return true;
+        return result;
     }
 }
