@@ -3,7 +3,7 @@ package com.iit.glid.glidapplication.core;
 
 import java.io.Serializable;
 
-public class ListItemWrapper {
+public class ListItemWrapper implements Serializable{
 
     private int mImageRes;
     private String mTitle;

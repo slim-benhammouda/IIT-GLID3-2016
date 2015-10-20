@@ -22,6 +22,8 @@ import java.util.ArrayList;
 
 public class FragmentWithRecycler extends Fragment implements AddDialogFragment.OnAddFragmentInteractionListener {
 
+private static final String LIST_CONTENT_KEY =  "LIST_CONTENT_KEY";
+
     private RecyclerView mRecyclerView;
     private CustomRecyclerAdapter mRecyclerAdpater;
     private ArrayList<ListItemWrapper> mContentList;
@@ -40,16 +42,19 @@ public class FragmentWithRecycler extends Fragment implements AddDialogFragment.
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_recycler, container, false);
-        initViews(rootView);
+        initViews(rootView,savedInstanceState);
         setHasOptionsMenu(true);
         return rootView;
     }
 
 
-    private void initViews(View rootView) {
+    private void initViews(View rootView, Bundle savedInstanceState) {
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler);
-        mContentList = new ArrayList<ListItemWrapper>();
-        //fillContentList();
+        if(savedInstanceState == null) {
+            mContentList = new ArrayList<ListItemWrapper>();
+        }else{
+            mContentList = (ArrayList<ListItemWrapper>) savedInstanceState.getSerializable(LIST_CONTENT_KEY);
+        }
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -84,6 +89,12 @@ public class FragmentWithRecycler extends Fragment implements AddDialogFragment.
 
 
         return true;
+    }
+
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putSerializable(LIST_CONTENT_KEY,mContentList);
     }
 
     @Override

@@ -58,4 +58,10 @@ public class MainActivity extends AppCompatActivity {
 
         return result;
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.v("IIT","on destroy called");
+    }
 }
